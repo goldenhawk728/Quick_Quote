@@ -1,5 +1,6 @@
 import express, { Express } from 'express';
 import './config.js'; // do not remove this line
+import { createUser } from './controllers/user.js';
 import { sessionMiddleware } from './sessionConfig.js';
 
 const app: Express = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false })); // Setup urlencoded (HTML Form
 app.use(express.static('public', { extensions: ['html'] }));
 
 // -- Routes --------------------------------------------------
+app.post('/user', createUser);
 // Register your routes below this line
 
 app.listen(process.env.PORT, () => {
